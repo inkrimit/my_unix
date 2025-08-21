@@ -1,186 +1,54 @@
-# Hydeout
+# Eleventy LibDoc
 
-Hydeout updates the original [Hyde](https://github.com/poole/hyde)
-theme for [Jekyll](http://jekyllrb.com) 3.x and 4.x and adds new functionality.
+[Eleventy LibDoc website](https://eleventy-libdoc.netlify.app/) | [11ty website](11ty)
 
-![Desktop](/_screenshots/1.png?raw=true)
-<img alt="Mobile home page" src="/_screenshots/2.png?raw=true" width="300px" />
-<img alt="Mobile post page" src="/_screenshots/3.png?raw=true" width="300px" />
+Eleventy LibDoc is an easy to use and content focused starter project for [Eleventy][11ty] to craft slick and responsive documentation. It was was developed with accessibility awareness and low-tech mindset which allows to reach good page speed performances. It contains vanilla JS self-made components like search, primary navigation, table of content, code highlighting and sandboxes. Every page created with LibDoc is printable and can work properly even without Javascript by maintaining only essential features.
 
-### Usage
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d1986dbf-2272-4614-8dec-c228ba4699ef/deploy-status)](https://app.netlify.com/sites/11ty-libdoc-blank/deploys)
 
-Hydeout is available as the `jekyll-theme-hydeout` Ruby Gem.
-Add `gem "jekyll-theme-hydeout", "~> 5.0"` to your Gemfile and run
-`bundle install`.
+![LibDoc’s interface with both light and dark modes](https://github.com/user-attachments/assets/91e7eb6d-8089-40b7-94e4-4fd970073c8d)
 
-If you're installing on Github pages, you may also have to add
-`remote_theme: fongandrew/hydeout` to your `_config.yml`. [See the Github
-instructions for more details.](https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/)
+<img width="1471" height="625" alt="image" src="https://github.com/user-attachments/assets/9af60d6f-8d5b-463e-9570-b5a6e54a8515" />
+<img width="1461" height="617" alt="image" src="https://github.com/user-attachments/assets/f37bbe07-f65a-4a4f-acb1-6892ec202aac" />
 
-Hydeout uses pagination, so if you have an `index.md`, you'll need to swap
-it with an `index.html` that uses the `index` layout:
+> [!NOTE]
+> Eleventy LibDoc is still under active development and therefore before reaching v1.0.0:
+> * Full backward compatibility is not guaranteed.
+> * Many features are subject to change.
 
-```
----
-layout: index
-title: Home
----
-```
+## Getting started
 
-You'll also need to add a setting to `_config.yml` telling Jekyll how many posts
-to include per page (e.g. `paginate: 5`).
+1. Clone or fork <https://github.com/ita-design-system/eleventy-libdoc>
+2. Run `npm install`
+3. Enter your own settings in `settings.json`. [Configuration](https://eleventy-libdoc.netlify.app/configuration/).
+4. Build `npx @11ty/eleventy --serve` or `npx @11ty/eleventy` (if you already have your own web server).
 
-### Keep It Simple
+[View deployment of this repository](https://11ty-libdoc-blank.netlify.app)
 
-In keeping with the original Hyde theme, Hydeout aims to keep the overall
-design lightweight and plugin-free. JavaScript is currently limited only
-to Disqus and Google Analytics (and is only loaded if you provide configuration
-variables).
+## Key features
 
-Hydeout makes heavy use of Flexbox in its CSS. If Flexbox is not available,
-the CSS degrades into a single column layout.
+* **Content focused** <br>LibDoc is easy to install, deploy and use.
+* **Accessibility** <br>LibDoc was developed with accessibility awareness.
+* **Performance** <br>Low front-end dependencies and vanilla JS self-made components make LibDoc cross-browser compatibility and good performances. <a href="https://developers.google.com/speed/pagespeed/insights/?url=eleventy-libdoc.netlify.app" target="_blank">View performances</a>.
+* **Search** <br>Fuzzy and standard search modes. Keyboard shortcut 🆂 allows quick focus on search input field. Fuzzy search makes easy keyboard based navigation whereas standard search allows to find an exact match..
+* **Smart navigation** <br>On page change, the primary navigation menu keeps its position.
+* **Smart table of content** <br>In addition of a pure static table of content, LibDoc generates a floating <abbr title="Table of Content">TOC</abbr> always visible that also displays the current window scroll position.
+* **Fallback if no Javascript available** <br>LibDoc can work even without Javascript with reduced features.
+* **Image transcoding** <br>LibDoc transcodes and resizes your source images into production ready formats.
+* **Printable** <br>Every page created with LibDoc can be printed.
+* **Light and dark modes** <br>LibDoc’s interface is available with both light and dark mode color schemes.
+* **Slick code highlighting** <br>Display your code in a nice style and adjust which code languages you really use.
+* **Sandboxes** <br>Showcase small demos or full HTML pages into a responsive dual pane.
+* **Atom feed** <br>The Atom feed allows visitors to subscribe to post blog content.
 
-### Customization
+## Documentation
 
-Hydeout replaces Hyde's class-based theming with the use
-of the following SASS variables:
+* [LibDoc’s homepage](https://eleventy-libdoc.netlify.app) <br>The website containing LibDocs’s presentation and comprehensive documentation.
+    * [Configuration](https://eleventy-libdoc.netlify.app/configuration/) <br>List and descriptions of every LibDoc parameter.
+    * [Creating content](https://eleventy-libdoc.netlify.app/creating-content/) <br>How LibDoc can display your content in multiple ways.
+    * [Front matter](https://eleventy-libdoc.netlify.app/front-matter/) <br>Documentation of all front matter settings related to a LibDoc page.
+    * [Primary navigation](https://eleventy-libdoc.netlify.app/primary-navigation/) <br>Detailed features of LibDoc’s primary navigation.
+    * [SEO](https://eleventy-libdoc.netlify.app/configuration/seo/) <br>How LibDoc’s configuration and pages parameters are applied for Search Engine Optimization.
+    * [Credits](https://eleventy-libdoc.netlify.app/configuration/credits/) <br>LibDoc could not work without these resources.
 
-```scss
-$sidebar-bg-color: #202020 !default;
-$sidebar-fg-color: white !default;
-$sidebar-sticky: true !default;
-$layout-reverse: false !default;
-$link-color: #268bd2 !default;
-```
-
-To override these variables, define your own variables inside a SASS file
-in the `assets/css/` directory.
-Then `@use` that file in your own `assets/css/main.scss` file, like so:
-
-```scss
----
-# Jekyll needs front matter for SCSS files
----
-
-@use "colours";
-@use "hydeout/variables" with (
-  $body-bg:           colours.$grey,
-  $body-color:        white,
-  $heading-color:     colours.$light-pink,
-  $link-color:        colours.$green,
-  $sidebar-bg-color:  colours.$dark-pink,
-  $sidebar-sticky:    false,
-  );
-@use "hydeout";
-```
-
-Example content of `assets/css/colours.scss`:
-
-```scss
-$green:       #61c200;
-$grey:        #363636;
-$dark-pink:   #9f0647;
-$light-pink:  #f0a2c3;
-```
-
-See the [_variables](_sass/hydeout/_variables.scss) file for other variables
-you can override.
-
-**Pay attention to the namespace of the variables you intend to override, otherwise, you will probably experience errors.**
-
-You can see the full set of partials you can replace in the
-[`_includes`](_includes) folder, but there are a few worth noting:
-
-* `_includes/copyright.html` - Insert your own copyright here.
-
-* `_includes/custom-head.html` - Insert custom head tags (e.g. to load your
-  own stylesheets)
-
-* `_includes/custom-foot.html` - Insert custom elements at the end of the
-  body (e.g. for custom JS)
-
-* `_includes/custom-nav-links.html` - Additional nav links to insert at the
-  end of the list of links in the sidebar.
-
-  Pro-tip: The `nav`s in the sidebar are flexboxes. Use the `order` property
-  to order your links.
-
-* `_includes/custom-icon-links.html`- Additional icon links to insert at the
-  end of the icon links at the bottom of the sidebar. You can use the `order`
-  property to re-order.
-
-* `_includes/favicons.html` - Replace references to `favicon.ico` and
-  `favicon.png` with your own favicons references.
-
-* `_includes/font-includes.html` - The Abril Fatface font used for the site
-  title is loaded here. If you're overriding that font in the CSS, be sure
-  to also remove the font load reference here.
-
-### New Features
-
-* Hydeout adds a new tags page (accessible in the sidebar). Just create a
-  new page with the tags layout:
-
-  ```
-  ---
-  layout: tags
-  title: Tags
-  ---
-  ```
-
-* Hydeout adds a new "category" layout for dedicated category pages.
-  Category pages are automatically added to the sidebar. All other pages
-  must have `sidebar_link: true` in their front matter to show up in
-  the sidebar. To create a category page, use the `category` layout"
-
-  ```
-  ---
-  layout: category
-  title: My Category
-  ---
-
-  Description of "My Category"
-  ```
-
-* You can control how pages are sorted by using the `sidebar_sort_order`
-  parameter in the front matter. This works for both category and non-category
-  pages, although non-category pages will always come first. Take a look at
-  [`_includes/sidebar-nav-links.html`](./_includes/sidebar-nav-links.html) if
-  you want to customize this behavior.
-
-  ```
-  ---
-  layout: page
-  title: My page
-  sidebar_sort_order: 123
-  ---
-
-  Some content.
-  ```
-
-* A simple redirect-to-Google search is available. Just create a page with
-  the `search` layout.
-
-  ```
-  ---
-  layout: search
-  title: Google Search
-  ---
-  ```
-
-* Disqus integration is ready out of the box. Just add the following to
-  your config file:
-
-  ```yaml
-  disqus:
-    shortname: my-disqus-shortname
-  ```
-
-  If you don't want Disqus or want to use something else, override
-  `comments.html`.
-
-* For Google Analytics support, define a `google_analytics` variable with
-  your property ID in your config file.
-
-There's also a bunch of minor tweaks and adjustments throughout the
-theme. Hope this works for you!
+[11ty]: https://www.11ty.dev/
